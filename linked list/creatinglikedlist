@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<conio.h>
+#include <stdlib.h>
+
+// defining the node
+struct Node
+{
+    int data;
+    struct Node *next; // next is a pointer of its node type;
+} *first=NULL;
+
+
+// creating the node
+int create(int A[], int n)
+{
+    struct Node *t, *last;
+    int i;
+    first = (struct Node *)malloc(sizeof(struct Node));
+    first->data = A[0];
+    first->next = NULL;
+    last = first;
+
+    for (i = 1; i < n; i++)
+    {
+        t = (struct Node *)malloc(sizeof(struct Node));
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+int display(struct Node *p)
+{
+    while (p!= NULL)
+    {
+        printf("%d", p->data);
+        p = p->next;
+    }
+}
+
+int main()
+{struct Node *temp;
+    int A[] = {2, 4, 6, 8, 10};
+    create(A, 5);
+    display(first);
+    return 0;
+}
